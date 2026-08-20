@@ -11,9 +11,7 @@ import AddCustomer from './Components/Customers/AddCustomer';
 import CreditCustomer from './Pages/CreditCustomer';
 import CustomerWiseReport from './Pages/CustomerWiseReport';
 import AllUnits from './Pages/AllUnits';
-import AddUnit from './Components/Units/AddUnit';
 import AllCategories from './Pages/AllCategories';
-import AddCategory from './Components/Categories/AddCategory';
 import AllProducts from './Pages/AllProducts';
 import AddProduct from './Components/Products/AddProduct';
 import AllPurchase from './Pages/AllPurchase';
@@ -25,13 +23,6 @@ import PrintInvoice from './Pages/PrintInvoice';
 import DailyInvoiceReport from './Pages/DailyInvoiceReport';
 import AllStock from './Pages/AllStock';
 import Login from './Pages/Login';
-import AddForms from './Pages/AddForms';
-import PopUpMain from './Components/PopupBox/PopUpMain';
-import PrintInvoiceComponent from './Components/Invoices/PrintInvoiceComponent';
-import CustomerReport from './Pages/CustomerReport';
-import InvoiceReport from './Pages/InvoiceReport';
-import UpdateCategory from './Components/PopupBox/UpdateCategory';
-import UpdateSupplier from './Components/PopupBox/UpdateSupplier';
 import Help from './Pages/Help'
 
 
@@ -78,5 +69,5 @@ function App() {
 
 export default App;
 
-{/* ------------- Figma ---------  */}
-  // https://www.figma.com/design/sxn5pvw5PM59CHNTwBFjYn/Inventory-Management-Web-%2B-Android?node-id=0-1&t=keUplJRB88dke1HD-0
+// ------------- Figma ---------
+// https://www.figma.com/design/sxn5pvw5PM59CHNTwBFjYn/Inventory-Management-Web-%2B-Android?node-id=0-1&t=keUplJRB88dke1HD-0
