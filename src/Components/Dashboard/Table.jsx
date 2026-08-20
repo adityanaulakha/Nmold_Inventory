@@ -5,7 +5,7 @@ const Table = () => {
     const [state, setstate] = React.useState(homedatatable);
     const [dir, setdir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, _setinterval] = React.useState(10)
+    const [interval] = React.useState(10)
     const [sortKey, setSortKey] = React.useState(null)
 
     const sortdata = (key) => {

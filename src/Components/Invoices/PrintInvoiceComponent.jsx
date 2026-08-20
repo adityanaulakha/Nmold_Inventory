@@ -11,7 +11,7 @@ const PrintInvoiceComponent = ({searchQuery}) => {
     const [state, setState] = React.useState(customerReportData);
     const [dir, setDir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, _setinterval] = React.useState(15)
+    const [interval] = React.useState(15)
     
     const sortdata = (key) => {
         const sortedData = [...state].sort((a, b) => {

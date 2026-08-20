@@ -11,8 +11,7 @@ const AllPurchaseComponent = ({searchQuery}) => {
     const [state, setState] = React.useState(purchasealldata);
     const [dir, setDir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, _setinterval] = React.useState(15)
-    const [_num,_setnumber]=React.useState(-1)
+    const [interval] = React.useState(15)
     const [showPopup, setShowPopup] = useState(false);
     
     const sortdata = (key) => {
