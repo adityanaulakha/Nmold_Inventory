@@ -1,9 +1,9 @@
 import React , {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell , faBellSlash } from '@fortawesome/free-solid-svg-icons';
+import { faBell , faBellSlash, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-const TopNavbar = ({ searchQuery, setSearchQuery }) => {
+const TopNavbar = ({ searchQuery, setSearchQuery, isSidebarOpen, setIsSidebarOpen }) => {
   const [isNotificationOn, setIsNotificationOn] = useState(false);
   const [isUserOpen, setUserOpen] = useState(false);
 
@@ -11,7 +11,16 @@ const TopNavbar = ({ searchQuery, setSearchQuery }) => {
   const toggleUser = () => setUserOpen(!isUserOpen);
 
   return (
-    <div className="ml-[16%] w-[84%] min-h-[10vh] flex justify-between items-center py-6 bg-white shadow-md px-[40px]">
+    <div className="md:ml-[16%] w-full md:w-[84%] min-h-[10vh] flex justify-between items-center py-6 bg-white shadow-md px-4 md:px-[40px]">
+      
+      {/* Hamburger Icon for Mobile */}
+      <button 
+        className="md:hidden text-gray-600 hover:text-gray-800 mr-4"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
+      </button>
+
       {/* Search Box */}
       <div className="relative flex items-center w-full max-w-sm">
         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500"></span>

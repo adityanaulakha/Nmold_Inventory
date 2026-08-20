@@ -55,7 +55,7 @@ const CustomerWiseReportComponent = ({searchQuery}) => {
                         <Link to="/add-customer"><button className="px-4 py-2 bg-[#5884FF] text-white rounded-md">
                         Add Customer</button></Link>
                     </div>
-                    <div className='table-scroll'>
+                    <div className='table-scroll w-full overflow-x-auto'>
                     <table className='w-full dash-table1 bg-white'>
                         <tr className='border border-solid cursor-pointer border-black h-[2rem]' style={{ backgroundColor: "white" }}>
                             <th

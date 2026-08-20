@@ -3,7 +3,7 @@ import React from 'react'
 const AddCustomer = () => {
     return (
         <>
-            <div className="ml-[16%]">
+            <div className="md:ml-[16%] w-full md:w-[84%] px-4">
             <div className='home-table2-type3 rounded-xl flex justify-center'>
                 <div className='pt-[1.6rem] flex flex-col items-center w-full '>
                     <div className='font-bold text-[25px] text-center'>

@@ -59,7 +59,7 @@ const Dropdown = ({ title, icon, links, isActive, isOpen, onToggle }) => {
   );
 };
 
-const Navbar = () => {
+const Navbar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
 
@@ -70,7 +70,21 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-[16%] min-h-full bg-[#5884FF] text-white flex flex-col p-4 space-y-2 absolute left-0 top-0">
+    <>
+      {/* Overlay for mobile when sidebar is open */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
+
+      <div className={`
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+        md:translate-x-0 
+        transform transition-transform duration-300 ease-in-out
+        w-64 md:w-[16%] min-h-full bg-[#5884FF] text-white flex flex-col p-4 space-y-2 fixed left-0 top-0 z-50 overflow-y-auto
+      `}>
       {/* Logo */}
       <div className="flex items-center space-x-2 mb-6 justify-center">
         <img src={Z} alt="Logo" className="h-10 w-10" />
@@ -205,6 +219,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

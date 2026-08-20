@@ -28,12 +28,14 @@ import Help from './Pages/Help'
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <>
       <Router>
         {/* <TopNavbar/> */}
-        <TopNavbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Navbar/>
+        <TopNavbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+        <Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
         <Routes>
             <Route path="/" element={<Dashboard/>} />
             <Route path="login" element={<Login/>} />

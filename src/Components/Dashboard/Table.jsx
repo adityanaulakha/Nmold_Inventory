@@ -5,133 +5,154 @@ const Table = () => {
     const [state, setstate] = React.useState(homedatatable);
     const [dir, setdir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, setinterval] = React.useState(15)
+    const [interval, setinterval] = React.useState(10)
+    const [sortKey, setSortKey] = React.useState(null)
 
     const sortdata = (key) => {
+        setSortKey(key)
         if (dir === 'asc') {
             setdir('desc')
             const sorteddata = [...state].sort((a, b) => {
-                if (a[key] > b[key]) {
-                    return 1
-                }
-                if (a[key] < b[key]) {
-                    return -1
-                }
+                if (a[key] > b[key]) return 1
+                if (a[key] < b[key]) return -1
                 return 0;
             })
             setstate(sorteddata)
-        }
-        else {
+        } else {
             setdir('asc')
             const sorteddata = [...state].sort((a, b) => {
-                if (a[key] < b[key]) {
-                    return 1
-                }
-                if (a[key] > b[key]) {
-                    return -1
-                }
+                if (a[key] < b[key]) return 1
+                if (a[key] > b[key]) return -1
                 return 0;
             })
             setstate(sorteddata)
         }
     }
 
-    const onSearch = (e) => {
-        const searchdata = [...state].filter((item) => {
-            return (item.email.toLowerCase().includes(e.target.value.toLowerCase()) || item.name.toLowerCase().includes(e.target.value.toLowerCase()) || item.country.toLowerCase().includes(e.target.value.toLowerCase()))
-        })
-        setstate(searchdata)
-    }
+    const SortIcon = ({ col }) => (
+        <span className="ml-1 inline-block opacity-50 text-xs">
+            {sortKey === col ? (dir === 'asc' ? '▲' : '▼') : '⇅'}
+        </span>
+    )
+
+    const columns = [
+        { label: 'Sr.', key: 'name1' },
+        { label: 'Item ID', key: 'name2' },
+        { label: 'Item Name', key: 'name3' },
+        { label: 'Date', key: 'name4' },
+        { label: 'Price', key: 'name5' },
+        { label: 'Category', key: 'name6' },
+        { label: 'Qty.', key: 'name7' },
+        { label: 'Supplier', key: 'name8' },
+        { label: 'Status', key: 'name9' },
+    ]
+
+    const totalPages = Math.ceil(state.length / interval)
+    const currentPage = Math.floor(start / interval)
 
     return (
         <>
-            <div className='home-table'>
-                <div className=' font-semibold text-[20px] my-2 '>
-                    Recently Added
+            <div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 mt-4">
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                    <div>
+                        <h2 className="text-lg md:text-xl font-bold text-gray-800">Recently Added</h2>
+                        <p className="text-xs text-gray-400 mt-0.5">{state.length} items total</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-gray-500 bg-blue-50 px-3 py-1.5 rounded-full w-fit">
+                        <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse inline-block"></span>
+                        Live data
+                    </div>
                 </div>
-                <div className='w-full h-[250px] overflow-y-auto'>
-                    <table className='w-full dash-table1'>
+
+                {/* Table Wrapper */}
+                <div className="w-full overflow-x-auto rounded-xl border border-gray-100">
+                    <table className="w-full text-sm text-left min-w-[640px]">
                         <thead>
-                            <tr className='cursor-pointer table-columns-heights table-header-row rounded-xl font-bold'>
-                                <td onClick={() => sortdata('name1')} className='left-rounded'>Sr. No.</td>
-                                <td onClick={() => sortdata('name1')}>Item ID</td>
-                                <td onClick={() => sortdata('name1')}>Item Name</td>
-                                <td onClick={() => sortdata('name4')}>Date</td>
-                                <td onClick={() => sortdata('name4')}>Price</td>
-                                <td onClick={() => sortdata('name2')}>Category</td>
-                                <td onClick={() => sortdata('name3')}>Qty.</td>
-                                <td onClick={() => sortdata('name5')}>Supplier</td>
-                                <td className='right-rounded' onClick={() => sortdata('name7')}>Status</td>
+                            <tr className="bg-gradient-to-r from-blue-500 to-blue-400 text-white">
+                                {columns.map((col) => (
+                                    <th
+                                        key={col.key}
+                                        onClick={() => sortdata(col.key)}
+                                        className="px-4 py-3 font-semibold whitespace-nowrap cursor-pointer hover:bg-blue-600 transition-colors select-none first:rounded-tl-xl last:rounded-tr-xl"
+                                    >
+                                        {col.label}
+                                        <SortIcon col={col.key} />
+                                    </th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
                             {state.slice(start, start + interval).map((item, index) => (
-                                <tr className='table-columns-heights' key={index}>
-                                    <td>
-                                        {start + index + 1}
+                                <tr
+                                    key={index}
+                                    className={`border-b border-gray-50 hover:bg-blue-50 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}
+                                >
+                                    <td className="px-4 py-3 text-gray-500 font-medium">{start + index + 1}</td>
+                                    <td className="px-4 py-3 text-gray-700 font-mono text-xs">{item.name2}</td>
+                                    <td className="px-4 py-3 text-gray-800 font-medium whitespace-nowrap">{item.name3}</td>
+                                    <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{item.name4}</td>
+                                    <td className="px-4 py-3 text-gray-800 font-semibold whitespace-nowrap">{item.name5}</td>
+                                    <td className="px-4 py-3">
+                                        <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full text-xs font-medium whitespace-nowrap">
+                                            {item.name6}
+                                        </span>
                                     </td>
-                                    <td>
-                                        {item.name2}
-                                    </td>
-                                    <td>
-                                        {item.name3}
-                                    </td>
-                                    <td>
-                                        {item.name4}
-                                    </td>
-                                    <td>
-                                        {item.name5}
-                                    </td>
-                                    <td>
-                                        {item.name6}
-                                    </td>
-                                    <td>
-                                        {item.name7}
-                                    </td>
-                                    <td>
-                                        {item.name8}
-                                    </td>
-                                    <td>
-                                        {item.name9[0] === "I" && <div className='bg-green-600 w-[fit-content] px-3 rounded-full mx-auto text-white'>
-                                            {item.name9}
-                                        </div>}
-                                        {item.name9[0] === "O" && <div className='bg-red-600 w-[fit-content] px-3 rounded-full mx-auto text-white'>
-                                            {item.name9}
-                                        </div>}
+                                    <td className="px-4 py-3 text-gray-700 text-center">{item.name7}</td>
+                                    <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{item.name8}</td>
+                                    <td className="px-4 py-3">
+                                        {item.name9?.[0] === 'I' && (
+                                            <span className="bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap">
+                                                {item.name9}
+                                            </span>
+                                        )}
+                                        {item.name9?.[0] === 'O' && (
+                                            <span className="bg-red-100 text-red-600 px-3 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap">
+                                                {item.name9}
+                                            </span>
+                                        )}
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
-                <div className='w-full bottom-pagination right-0 flex justify-center items-center gap-2 mt-2'>
-                    <div className='flex gap-2'>
-                        <div className='home-gt-btn cursor-pointer' onClick={() => setstart(Math.max(0, start - interval))}>
-                            &lt; &nbsp; Back
-                        </div>
-                        <div className='home-pagination cursor-pointer home-pagination-active' onClick={() => setstart(0)}>
-                            1
-                        </div>
-                        <div className={`home-pagination cursor-pointer ${Math.ceil(start / interval) + 1 > 1 ? "" : "hidden"}`} 
-                            style={{ display: (Math.ceil(start / interval) > 0 && (Math.ceil(start / interval) + 1) * interval < state.length) ? "block" : "none" }}
-                            onClick={() => setstart(Math.max(0, Math.ceil(start / interval)) * interval)}>
-                            {Math.ceil(start / interval) + 1}
-                        </div>
-                        <div className={`home-pagination cursor-pointer ${start >= interval ? "hidden" : " hidden "} `}
-                            style={{ display: state.length > interval ? "block" : "none" }}
+
+                {/* Pagination */}
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-3 border-t border-gray-100">
+                    <p className="text-xs text-gray-400">
+                        Showing {start + 1}–{Math.min(start + interval, state.length)} of {state.length} entries
+                    </p>
+                    <div className="flex items-center gap-1.5">
+                        <button
+                            onClick={() => setstart(Math.max(0, start - interval))}
+                            disabled={start === 0}
+                            className="px-3 py-1.5 text-xs rounded-lg border border-gray-200 text-gray-600 hover:bg-blue-50 hover:border-blue-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                         >
-                            ...
-                        </div>
-                        <div className={`home-pagination cursor-pointer ${state.length > 15 ? "" : "hidden"} `}
-                            onClick={() => setstart(Math.max(0, Math.min(state.length, Math.floor(state.length / interval) * interval)))}
+                            ← Back
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, i) => (
+                            <button
+                                key={i}
+                                onClick={() => setstart(i * interval)}
+                                className={`w-8 h-8 text-xs rounded-lg border transition-all font-medium ${
+                                    currentPage === i
+                                        ? 'bg-blue-500 text-white border-blue-500 shadow-sm'
+                                        : 'border-gray-200 text-gray-600 hover:bg-blue-50 hover:border-blue-300'
+                                }`}
+                            >
+                                {i + 1}
+                            </button>
+                        ))}
+
+                        <button
+                            onClick={() => { if (start + interval < state.length) setstart(start + interval) }}
+                            disabled={start + interval >= state.length}
+                            className="px-3 py-1.5 text-xs rounded-lg border border-gray-200 text-gray-600 hover:bg-blue-50 hover:border-blue-300 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                         >
-                            {Math.ceil(state.length / interval)}
-                        </div>
-                        <div className='home-gt-btn cursor-pointer' onClick={() => {
-                            if (start + interval < state.length) setstart(Math.min(state.length, start + interval));
-                        }}>
-                            Next  &nbsp; &gt;
-                        </div>
+                            Next →
+                        </button>
                     </div>
                 </div>
             </div>

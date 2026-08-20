@@ -56,7 +56,7 @@ const AllPurchaseComponent = ({searchQuery}) => {
                         </Link>
                       <Link to="/add-purchase"><button className="px-4 py-2 bg-[#5884FF] text-white rounded-md shadow-sm shadow-[#5884FF]">Add Purchase</button></Link>
                       </div>
-                      <div className='table-scroll'>
+                      <div className='table-scroll w-full overflow-x-auto'>
                     <table className='w-full dash-table1 bg-white'>
                         <tr className='border border-solid table-header-row cursor-pointer ' style={{ backgroundColor: "white" }}>
                             <th

@@ -58,7 +58,7 @@ const PurchaseReportComponent = ({searchQuery}) => {
                         </div>
                       
                       </div>
-                      <div className='table-scroll'>
+                      <div className='table-scroll w-full overflow-x-auto'>
                     <table className='w-full dash-table1 bg-white'>
                         <tr className='border border-solid table-header-row cursor-pointer ' style={{ backgroundColor: "white" }}>
                             <th
