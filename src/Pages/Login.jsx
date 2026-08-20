@@ -3,8 +3,6 @@ import AC from "../Assets/AccountIcon.png"
 import BG from "../Assets/Rectangle2.png"
 import G1 from "../Assets/Google.png"
 import "../Styles/Login.css"
-import ForgotPassword from '../Components/PopupBox/ForgotPassword'
-import PopUpMain from '../Components/PopupBox/PopUpMain'
 const Login = () => {
     const [state,setstate] = React.useState(false)
     return (

@@ -11,7 +11,7 @@ const AllProductsComponent = ({searchQuery}) => {
     const [state, setState] = React.useState(allproductdata);
     const [dir, setDir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, setinterval] = React.useState(15)
+    const [interval, _setinterval] = React.useState(15)
     const [showPopup, setShowPopup] = useState(false);
     const [popupAction, setPopupAction] = useState(null); 
     const [selectedId, setSelectedId] = useState(null);

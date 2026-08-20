@@ -10,7 +10,7 @@ const AllStockComponent = ({searchQuery}) => {
     const [state, setState] = React.useState(stockData);
     const [dir, setDir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, setinterval] = React.useState(15)
+    const [interval, _setinterval] = React.useState(15)
     
     const sortData = (key) => {
         const sortedData = [...state].sort((a, b) => {

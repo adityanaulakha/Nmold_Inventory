@@ -11,8 +11,8 @@ const PurchaseReportComponent = ({searchQuery}) => {
     const [state, setState] = React.useState(purchasealldata);
     const [dir, setDir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, setinterval] = React.useState(15)
-    const [num,setnumber]=React.useState(-1)
+    const [interval, _setinterval] = React.useState(15)
+    const [_num,_setnumber]=React.useState(-1)
     
     const sortdata = (key) => {
         const sortedData = [...state].sort((a, b) => {
@@ -44,7 +44,7 @@ const PurchaseReportComponent = ({searchQuery}) => {
     
     return (
         <>
-            {/* <PopUpMain id={num}/> */}
+            {/* <PopUpMain id={_num}/> */}
             <div className='home-table2 rounded-xl'>
                 <div className=''>
                      <div className="flex justify-between items-center mb-4">

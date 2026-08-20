@@ -10,7 +10,7 @@ const AllInvoiceComponent = ({searchQuery}) => {
     const [state, setState] = React.useState(allinvoicedata);
     const [dir, setDir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, setinterval] = React.useState(15)
+    const [interval, _setinterval] = React.useState(15)
     
     const sortdata = (key) => {
         const sortedData = [...state].sort((a, b) => {

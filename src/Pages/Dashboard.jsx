@@ -2,8 +2,6 @@ import React from 'react'
 import "../Styles/Home.css"
 import Card from '../Components/Dashboard/Card'
 import Table from '../Components/Dashboard/Table'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const Dashboard = () => {
   return (

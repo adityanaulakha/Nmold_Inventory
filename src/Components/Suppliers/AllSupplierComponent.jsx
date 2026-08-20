@@ -10,7 +10,7 @@ const SupplierComponent = ({ searchQuery }) => {
     const [state, setState] = React.useState(supplierdata);
     const [dir, setdir] = React.useState('asc')
     const [start, setstart] = React.useState(0)
-    const [interval, setinterval] = React.useState(15)
+    const [interval, _setinterval] = React.useState(15)
     const [showPopup, setShowPopup] = useState(false);
     const [popupAction, setPopupAction] = useState(null); 
     const [selectedId, setSelectedId] = useState(null); 
@@ -39,7 +39,7 @@ const SupplierComponent = ({ searchQuery }) => {
         );
     
         setState(searchData);
-    },[searchQuery, supplierdata]); // Supplierdata in Dependency Array to ensure effect runs when data changes or updated in supplierdata (fetched from API).
+    },[searchQuery]); // searchQuery drives filtering; supplierdata is module-level constant
     
 
     const handlePopup = (action, id) => {
