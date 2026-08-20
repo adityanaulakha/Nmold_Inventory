@@ -1,12 +1,10 @@
 .dashboard-top-cards {
     background-color: white;
-    width: fit-content;
-    width: 15rem;
-    height: fit-content;
-    height: 13rem;
+    width: 100%;
+    min-height: 13rem;
+    height: auto;
     border-radius: 20px;
-    /* max-width:10rem; */
-    /* max-height:10rem; */
+    padding: 1rem;
 }
 
 .dash-top-card-img {
